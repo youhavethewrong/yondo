@@ -2,6 +2,8 @@ package info.youhavethewrong.yondo;
 
 import java.util.Random;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -31,9 +33,9 @@ public class YondoResource {
 	}
 
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Path("add")
-	public String createNewQuote() {
-		return "";
+	public void createNewQuote(@FormParam("content") String content) {
+		dao.insertAuto(content);
 	}
 }

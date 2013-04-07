@@ -9,9 +9,12 @@ public interface QuoteDAO {
 	void createSomethingTable();
 
 	@SqlUpdate("insert into quotes (id, content) values (:id, :content)")
-	void insert(@Bind("id") int id, @Bind("content") String content);
+	void insert(@Bind("content") String content);
 
-	@SqlQuery("select content from quotes where id = :id")
+	@SqlUpdate("insert into quotes (content) values (:content)")
+	void insertAuto(@Bind("content") String content);
+	
+	@SqlQuery("select content from quotes where rowid = :id")
 	String findContentById(@Bind("id") int id);
 
 	@SqlQuery("select count(*) from quotes")
