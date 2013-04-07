@@ -9,9 +9,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.google.common.base.Optional;
+import com.yammer.dropwizard.auth.Auth;
 
 @Path("/")
 public class YondoResource {
@@ -35,7 +38,12 @@ public class YondoResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Path("add")
-	public void createNewQuote(@FormParam("content") String content) {
-		dao.insertAuto(content);
+	public void createNewQuote(@FormParam("content") String content,
+			@Auth String user) {
+		if (user != null) {
+			dao.insertAuto(content);
+		} else {
+			throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+		}
 	}
 }

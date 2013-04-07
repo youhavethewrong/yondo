@@ -18,4 +18,8 @@ public class YondoConfiguration extends Configuration {
 		return database;
 	}
 
+	protected void setDatabaseConfiguration(DatabaseConfiguration database) {
+		this.database = database;
+	}
+
 }

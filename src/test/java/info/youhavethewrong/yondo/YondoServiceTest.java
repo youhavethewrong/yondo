@@ -1,9 +1,11 @@
 package info.youhavethewrong.yondo;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
 import com.yammer.dropwizard.config.Environment;
 import com.yammer.dropwizard.db.DatabaseConfiguration;
@@ -16,11 +18,12 @@ public class YondoServiceTest {
 	@Before
 	public void setup() throws Exception {
 		DatabaseConfiguration db = new DatabaseConfiguration();
-		db.setDriverClass("org.sqlite.JDBC");
 		db.setUrl("jdbc:sqlite:test.db");
+		db.setUser("sqlite");
+		db.setDriverClass("org.sqlite.JDBC");
+		config.setDatabaseConfiguration(db);
 	}
 
-	@Ignore
 	@Test
 	public void buildYondoResource() throws Exception {
 		service.run(config, environment);

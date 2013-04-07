@@ -3,6 +3,7 @@ package info.youhavethewrong.yondo;
 import org.skife.jdbi.v2.DBI;
 
 import com.yammer.dropwizard.Service;
+import com.yammer.dropwizard.auth.basic.BasicAuthProvider;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
 import com.yammer.dropwizard.jdbi.DBIFactory;
@@ -27,6 +28,8 @@ public class YondoService extends Service<YondoConfiguration> {
 		final QuoteDAO dao = jdbi.onDemand(QuoteDAO.class);
 
 		env.addResource(new YondoResource(dao));
+		env.addProvider(new BasicAuthProvider<String>(
+				new SimpleAuthenticator(), "user"));
 	}
 
 }
