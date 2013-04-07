@@ -13,4 +13,7 @@ public interface QuoteDAO {
 
 	@SqlQuery("select content from quotes where id = :id")
 	String findContentById(@Bind("id") int id);
+
+	@SqlQuery("select count(*) from quotes")
+	int countQuotes();
 }
