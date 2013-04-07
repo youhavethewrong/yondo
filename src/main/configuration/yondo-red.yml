@@ -1,8 +1,3 @@
-# 
-template: Hello, %s!
-defaultName: Stranger
-
-# 
 database:
   # the name of your JDBC driver
   driverClass: org.sqlite.JDBC
@@ -10,18 +5,5 @@ database:
   # the JDBC URL
   url: jdbc:sqlite:yondo.db
 
-  # any properties specific to your JDBC driver:
-  properties:
-    charSet: UTF-8
-
-  # the SQL query to run when validating a connection's liveness
-  validationQuery: "/* MyService Health Check */ SELECT 1"
-
-  # whether or not idle connections should be validated
-  checkConnectionWhileIdle: false
-
-  # how long a connection must be held before it can be validated
-  checkConnectionHealthWhenIdleFor: 10s
-
-  # the maximum lifetime of an idle connection
-  closeConnectionIfIdleFor: 1 minute
+  # username to use
+  user: sqlite

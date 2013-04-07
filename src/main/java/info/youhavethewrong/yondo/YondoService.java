@@ -26,7 +26,7 @@ public class YondoService extends Service<YondoConfiguration> {
 				"sqlite");
 		final QuoteDAO dao = jdbi.onDemand(QuoteDAO.class);
 
-		env.addResource(new YondoResource( dao));
+		env.addResource(new YondoResource(dao));
 	}
 
 }

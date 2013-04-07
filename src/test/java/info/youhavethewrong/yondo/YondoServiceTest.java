@@ -18,7 +18,6 @@ public class YondoServiceTest {
 		DatabaseConfiguration db = new DatabaseConfiguration();
 		db.setDriverClass("org.sqlite.JDBC");
 		db.setUrl("jdbc:sqlite:test.db");
-		config.setDatabaseConfiguration(db);
 	}
 
 	@Ignore
