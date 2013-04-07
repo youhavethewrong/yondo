@@ -31,8 +31,12 @@ public class YondoConfiguration extends Configuration {
 		return defaultName;
 	}
 
-	public DatabaseConfiguration getDatabase() {
+	public DatabaseConfiguration getDatabaseConfiguration() {
 		return database;
+	}
+	
+	protected void setDatabaseConfiguration(DatabaseConfiguration database) {
+		this.database = database;
 	}
 
 }

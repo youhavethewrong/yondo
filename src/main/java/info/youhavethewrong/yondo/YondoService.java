@@ -21,15 +21,12 @@ public class YondoService extends Service<YondoConfiguration> {
 	@Override
 	public void run(YondoConfiguration config, Environment env)
 			throws Exception {
-		String template = config.getTemplate();
-		String defaultName = config.getDefaultName();
-		
-	    final DBIFactory factory = new DBIFactory();
-	    final DBI jdbi = factory.build(env, config.getDatabase(), "database");
-	    final QuoteDAO dao = jdbi.onDemand(QuoteDAO.class);
+		final DBIFactory factory = new DBIFactory();
+		final DBI jdbi = factory.build(env, config.getDatabaseConfiguration(),
+				"sqlite");
+		final QuoteDAO dao = jdbi.onDemand(QuoteDAO.class);
 
-		env.addResource(new YondoResource(template, defaultName, dao));
-		env.addHealthCheck(new TemplateHealthCheck(template));
+		env.addResource(new YondoResource( dao));
 	}
 
 }
