@@ -20,7 +20,6 @@ public class DiceRollTest {
 
 	@Test
 	public void shouldRollD6() {
-		@SuppressWarnings("unchecked")
 		Integer result = ((ArrayList<Integer>) roll.roll("d6")).get(0);
 		System.out.println("Got " + result + " from a d6");
 		assertNotNull(result);
@@ -30,7 +29,6 @@ public class DiceRollTest {
 
 	@Test
 	public void shouldRollDpercent() {
-		@SuppressWarnings("unchecked")
 		Integer result = ((ArrayList<Integer>) roll.roll("d%")).get(0);
 		System.out.println("Got " + result + " from a d%");
 		assertNotNull(result);
@@ -40,7 +38,6 @@ public class DiceRollTest {
 
 	@Test
 	public void shouldRoll3D6() {
-		@SuppressWarnings("unchecked")
 		Integer result = ((ArrayList<Integer>) roll.roll("3d6")).get(0);
 		System.out.println("Got " + result + " from a 3d6");
 		assertNotNull(result);
@@ -50,7 +47,6 @@ public class DiceRollTest {
 
 	@Test
 	public void shouldRoll4D6DropLowest() {
-		@SuppressWarnings("unchecked")
 		Integer result = ((ArrayList<Integer>) roll.roll("4d6s1")).get(0);
 		System.out.println("Got " + result + " from a 4d6s1");
 		assertNotNull(result);
@@ -60,7 +56,6 @@ public class DiceRollTest {
 
 	@Test
 	public void shouldRollSix4D6DropLowest() {
-		@SuppressWarnings("unchecked")
 		List<Integer> result = (ArrayList<Integer>) roll.roll("6x4d6s1");
 		System.out.println("Got " + result + " from 6x4d6s1");
 		assertNotNull(result);
@@ -72,7 +67,6 @@ public class DiceRollTest {
 
 	@Test
 	public void shouldRollDpercentTimes100() {
-		@SuppressWarnings("unchecked")
 		Integer result = ((ArrayList<Integer>) roll.roll("d%*100")).get(0);
 		System.out.println("Got " + result + " from d%*100");
 		assertNotNull(result);
@@ -82,7 +76,6 @@ public class DiceRollTest {
 
 	@Test
 	public void shouldRollD4Plus1() {
-		@SuppressWarnings("unchecked")
 		Integer result = ((ArrayList<Integer>) roll.roll("d4+1")).get(0);
 		System.out.println("Got " + result + " from d4+1");
 		assertNotNull(result);

@@ -1,5 +1,6 @@
 package info.youhavethewrong.yondo;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.ws.rs.Consumes;
@@ -45,5 +46,13 @@ public class YondoResource {
 		} else {
 			throw new WebApplicationException(Response.Status.UNAUTHORIZED);
 		}
+	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("roll")
+	public List<Integer> rollDice(@QueryParam("diespec") String diespec) {
+		DiceRoll dr = new DiceRoll();
+		return dr.roll(diespec);
 	}
 }

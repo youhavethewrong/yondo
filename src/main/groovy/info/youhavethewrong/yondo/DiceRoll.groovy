@@ -12,7 +12,7 @@ class DiceRoll {
 	private def dieSpecPattern = ~/(?:(\d+)x)?((?:\d+)?)d(\d+|%)(?:\*(\d+))?(?:(\+|-)(\d+))?(?:s(\d+))?/
 	private def randGen = new Random()
 
-	public def roll(dieSpec) {
+	public List<Integer> roll(dieSpec) {
 		def sums = []
 
 		def parts = parse(dieSpec)
