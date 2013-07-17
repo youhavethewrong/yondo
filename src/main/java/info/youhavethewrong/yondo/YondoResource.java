@@ -1,6 +1,5 @@
 package info.youhavethewrong.yondo;
 
-import java.util.List;
 import java.util.Random;
 
 import javax.ws.rs.Consumes;
@@ -9,15 +8,13 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.google.common.base.Optional;
 import com.yammer.dropwizard.auth.Auth;
 
-@Path("/")
+@Path("/yondo")
 public class YondoResource {
 	private Random prng;
 	private final QuoteDAO dao;
@@ -29,16 +26,16 @@ public class YondoResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("quote")
-	public Quote getRandomQuote(@QueryParam("id") Optional<String> id) {
-		int selection = prng.nextInt(dao.countQuotes());
+	@Path("/quote")
+	public Quote getRandomQuote() {
+		int selection = prng.nextInt(dao.countQuotes()) + 1;
 		String result = dao.findContentById(selection);
 		return new Quote(selection, result);
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Path("add")
+	@Path("/quote/add")
 	public void createNewQuote(@FormParam("content") String content,
 			@Auth String user) {
 		if (user != null) {
@@ -46,13 +43,5 @@ public class YondoResource {
 		} else {
 			throw new WebApplicationException(Response.Status.UNAUTHORIZED);
 		}
-	}
-
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("roll")
-	public List<Integer> rollDice(@QueryParam("diespec") String diespec) {
-		DiceRoll dr = new DiceRoll();
-		return dr.roll(diespec);
 	}
 }

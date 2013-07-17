@@ -2,6 +2,7 @@ package info.youhavethewrong.yondo;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import org.junit.Before;
@@ -27,6 +28,6 @@ public class YondoServiceTest {
 	@Test
 	public void buildYondoResource() throws Exception {
 		service.run(config, environment);
-		verify(environment).addResource(any(YondoResource.class));
+		verify(environment, times(3)).addResource(any(YondoResource.class));
 	}
 }
