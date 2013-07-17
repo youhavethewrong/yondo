@@ -30,7 +30,7 @@ public class TableResource {
 		} else if (roll < 88) {
 			return "Village, population: " + dice.roll("1d4+5*100");
 		} else if (roll < 96) {
-			return "Village, population: " + dice.roll("2d6+1*500");
+			return "Town, population: " + dice.roll("2d6+1*500");
 		} else {
 			return "City, population: " + dice.roll("5d6*2000");
 		}
