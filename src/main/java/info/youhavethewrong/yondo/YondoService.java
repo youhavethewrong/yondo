@@ -1,5 +1,7 @@
 package info.youhavethewrong.yondo;
 
+import info.youhavethewrong.yondo.util.SimpleAuthenticator;
+
 import org.skife.jdbi.v2.DBI;
 
 import com.yammer.dropwizard.Service;

@@ -1,5 +1,7 @@
 package info.youhavethewrong.yondo;
 
+import info.youhavethewrong.yondo.util.RateOfTravelMapper;
+
 import java.util.List;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
