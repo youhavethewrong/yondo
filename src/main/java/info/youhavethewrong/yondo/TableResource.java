@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 public class TableResource {
 
 	private RateOfTravelDAO travelDao;
+	private WeatherReport report = new WeatherReport();
 
 	public TableResource(RateOfTravelDAO travelDao) {
 		this.travelDao = travelDao;
@@ -48,5 +49,12 @@ public class TableResource {
 	@Path("/rot/{terrain}")
 	public RateOfTravel getRateOfTravel(@PathParam("terrain") String terrain) {
 		return travelDao.findRatesByTerrain(terrain);
+	}
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/weather/{dayOfYear}")
+	public String produceWeatherReport(@PathParam("dayOfYear") Integer dayOfYear) {
+		return report.produceReport(dayOfYear);
 	}
 }
