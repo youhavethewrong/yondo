@@ -1,25 +1,25 @@
 package info.youhavethewrong.yondo;
 
+import io.dropwizard.Configuration;
+import io.dropwizard.db.*;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yammer.dropwizard.config.Configuration;
-import com.yammer.dropwizard.db.DatabaseConfiguration;
 
 public class YondoConfiguration extends Configuration {
 
-	@Valid
-	@NotNull
-	@JsonProperty
-	private DatabaseConfiguration database = new DatabaseConfiguration();
+    @Valid
+    @NotNull
+    @JsonProperty("database")
+    private DataSourceFactory database = new DataSourceFactory();
 
-	public DatabaseConfiguration getDatabaseConfiguration() {
-		return database;
-	}
+    public DataSourceFactory getDatabaseConfiguration() {
+	return database;
+    }
 
-	protected void setDatabaseConfiguration(DatabaseConfiguration database) {
-		this.database = database;
-	}
-
+    protected void setDatabaseConfiguration(DataSourceFactory database) {
+	this.database = database;
+    }
 }

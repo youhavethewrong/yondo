@@ -1,33 +1,27 @@
 package info.youhavethewrong.yondo;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
+import io.dropwizard.db.*;
+import io.dropwizard.setup.Environment;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.yammer.dropwizard.config.Environment;
-import com.yammer.dropwizard.db.DatabaseConfiguration;
+import org.junit.*;
 
 public class YondoServiceTest {
-	private final Environment environment = mock(Environment.class);
-	private final YondoService service = new YondoService();
-	private final YondoConfiguration config = new YondoConfiguration();
+    private final Environment environment = mock(Environment.class);
+    private final YondoService service = new YondoService();
+    private final YondoConfiguration config = new YondoConfiguration();
 
-	@Before
-	public void setup() throws Exception {
-		DatabaseConfiguration db = new DatabaseConfiguration();
-		db.setUrl("jdbc:sqlite:test.db");
-		db.setUser("sqlite");
-		db.setDriverClass("org.sqlite.JDBC");
-		config.setDatabaseConfiguration(db);
-	}
+    public void setup() throws Exception {
+	DataSourceFactory db = new DataSourceFactory();
+	db.setUrl("jdbc:sqlite:test.db");
+	db.setUser("sqlite");
+	db.setDriverClass("org.sqlite.JDBC");
+	config.setDatabaseConfiguration(db);
+    }
 
-	@Test
-	public void buildYondoResource() throws Exception {
-		service.run(config, environment);
-		verify(environment, times(3)).addResource(any(YondoResource.class));
-	}
+    public void buildYondoResource() throws Exception {
+	service.run(config, environment);
+	verify(environment, times(3)).jersey().register(any(Object.class));
+    }
 }
